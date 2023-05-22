@@ -4,19 +4,19 @@ import css from './Modal.module.css'
 
 export const Modal = ({ urlPhoto, onClose }) => {
   useEffect(() => {
-    hendleKeyDown = event => {
+    const hendleKeyDown = event => {
       if (event.code === 'Escape') {
         onClose();
       }
     };
 
-    window.addEventListener('keydown', hendleKeyDown);
+      window.addEventListener('keydown', hendleKeyDown);
     return () => {
       window.removeEventListener('keydown', hendleKeyDown);
     };
   }, [onClose]);
 
-  hendleBeckdropClick = event => {
+  const hendleBeckdropClick = event => {
     if (event.currentTarget === event.target) {
       onClose();
     }

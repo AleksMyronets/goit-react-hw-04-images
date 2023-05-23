@@ -46,7 +46,7 @@ export const App = () => {
     }
     setStatus('pending');
     fetch(
-      `https://pixabay.com/api/?q=${pictureName}&page=${page}&key=34880746-04cbac759a7a46edf3541baa4d&image_type=photo&orientation=horizontal&per_page=12`
+      `https://pixabay.com/api/?q=${pictureName}&page=${page}&key=34880746-04cbac759a7a46edf3541baa4&image_type=photo&orientation=horizontal&per_page=12`
     )
       .then(res => res.json())
       .then(picture => {

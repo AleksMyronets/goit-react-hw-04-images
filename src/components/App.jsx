@@ -14,6 +14,7 @@ export const App = () => {
   const [status, setStatus] = useState(null);
   const [showeModal, setShoweModal] = useState(false);
   const [urlPicture, setUrlPicture] = useState('');
+  const [totalHits, setTotalHits] = useState(0);
 
   const hendleSubmit = event => {
     event.preventDefault();
@@ -51,9 +52,9 @@ export const App = () => {
       .then(res => res.json())
       .then(picture => {
         setPictures(prevState => [...prevState, ...picture.hits]);
+        setTotalHits(picture.totalHits);
         setStatus('resolved');
-      })
-      .catch(error => {
+      }).catch(error => {
         setError(error);
         setStatus('rejected');
       });
@@ -67,7 +68,7 @@ export const App = () => {
       {showeModal && <Modal onClose={onModal} urlPhoto={urlPicture} />}
 
       {status === 'pending' && <Loader />}
-      {pictures.length >= 12 && <Button onClick={onLoadMore} />}
+      {pictures.length < totalHits && <Button onClick={onLoadMore} />}
     </div>
   );
 };
